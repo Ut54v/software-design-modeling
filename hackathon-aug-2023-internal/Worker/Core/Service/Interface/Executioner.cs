@@ -2,8 +2,8 @@
 
 namespace Worker.Core.Interface
 {
-    public interface Executioner
+    public interface Executioner<T>
     {
-        ResponseStatus Execute();
+         Task<ResponseStatus> Execute(T arg);
     }
 }

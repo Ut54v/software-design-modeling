@@ -10,7 +10,7 @@ namespace TaskExecutor.Models
             Address = _address;
             Status = _status;
         }
-        public int id { get; set; }
+        public Guid id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public NodeStatus Status { get; set; }

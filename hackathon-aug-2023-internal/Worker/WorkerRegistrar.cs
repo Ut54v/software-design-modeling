@@ -25,13 +25,13 @@ public class WorkerRegistrar
     {
         var worker = GetWorkerInfo();
         
-        var client = new HttpClient();
-        var response = await client.PostAsJsonAsync($"{_allocatorUri}/api/nodes/register", new
-        {
-            worker.Name,
-            Address = $"http://localhost:{worker.Port}"
-        });
-        response.EnsureSuccessStatusCode();
+        //var client = new HttpClient();
+        //var response = await client.PostAsJsonAsync($"{_allocatorUri}/api/nodes/register", new
+        //{
+        //    worker.Name,
+        //    Address = $"http://localhost:{worker.Port}"
+        //});
+        //response.EnsureSuccessStatusCode();
         
         _logger.LogInformation("Worker registered with name: {WorkerName}", worker.Name);
     }

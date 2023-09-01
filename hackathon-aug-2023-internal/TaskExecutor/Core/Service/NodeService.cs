@@ -1,7 +1,7 @@
 ﻿using TaskExecutor.Models;
 using Worker.Core.Enums;
 
-namespace TaskExecutor.Controllers.Service
+namespace TaskExecutor.Core.Service
 {
     public class NodeService
     {
@@ -15,7 +15,7 @@ namespace TaskExecutor.Controllers.Service
         public void Remove(string name)
         {
             NodeModel node = nodes?.Find(x => x.Name.Equals(name));
-            if(node != null)
+            if (node != null)
             {
                 nodes?.Remove(node);
             }
@@ -26,7 +26,8 @@ namespace TaskExecutor.Controllers.Service
             return nodes;
         }
 
-        public List<NodeModel> GetAvailableNodes() {
+        public List<NodeModel> GetAvailableNodes()
+        {
             return nodes.Where(x => x.Status.Equals(NodeStatus.available)).ToList();
         }
     }

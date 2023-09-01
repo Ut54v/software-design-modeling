@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using TaskAllocatorCommons.Models;
-using TaskExecutor.Controllers.Service;
+using TaskExecutor.Core.Service;
 using TaskExecutor.Models;
 
 namespace TaskExecutor.Controllers
@@ -9,9 +9,9 @@ namespace TaskExecutor.Controllers
     [ApiController]
     public class NodesController : ControllerBase
     {
-        private readonly TaskService<MemeTaskModel> taskService;
+        private readonly TaskService taskService;
         private readonly NodeService nodeService;
-        public NodesController(TaskService<MemeTaskModel> _taskService , NodeService _nodeService)
+        public NodesController(TaskService _taskService , NodeService _nodeService)
         {
             taskService = _taskService;
             nodeService = _nodeService;
@@ -24,19 +24,19 @@ namespace TaskExecutor.Controllers
             return Ok();
         }
 
-        [HttpPost]
-        [Route("meme-download-task")]
-        public IActionResult Task([FromBody]MemeTaskModel memeTaskModel)
-        {
-            taskService.Add(memeTaskModel);
-            return Ok();
-        }
-
         [HttpGet]
         [Route("nodes")]
         public IActionResult GetAllNodes()
         {
             return Ok(nodeService.GetAll());
+        }
+
+        [HttpPost]
+        [Route("task/meme")]
+        public IActionResult AddTask(TaskModel taskModel)
+        {
+            taskService.Add(taskModel);
+            return Ok();
         }
 
         [HttpGet]
